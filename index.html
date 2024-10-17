@@ -170,7 +170,6 @@
         </div>
       </div>
     </div>
- 
   <section id="rsvp" class="rsvp">
     <div class="container">
       <div class="row justify-content-center">
@@ -242,6 +241,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8 col-10 text-center">
+          
           <span>ungkapan tanda kasih</span>
           <h2>Kirim Hadiah</h2>
           <p>Terimakasih Telah Mengisi Web Ini
@@ -269,8 +269,88 @@
       </div>
     </div>
   </section>
+  <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+    <div class="container">
+      <div class="row justify-content-center mb-5 pb-3">
+        <div class="col-md-7 heading-section text-center ftco-animate">
+          <h1 class="big big-2">Contact</h1>
+          <h2 class="mb-4">Contact Me</h2>
+          <p>Feel Free to Contact Me</p>
+        </div>
+      </div>
 
-  <footer>
+      <div class="row d-flex contact-info mb-5">
+        <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          <div class="align-self-stretch box p-4 text-center">
+            <div class="icon d-flex align-items-center justify-content-center">
+              <span class="icon-map-signs"></span>
+            </div>
+            <h3 class="mb-4">Address</h3>
+            <p>Tanggalrejo Mojoagung Jombang</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          <div class="align-self-stretch box p-4 text-center">
+            <div class="icon d-flex align-items-center justify-content-center">
+              <span class="icon-phone2"></span>
+            </div>
+            <h3 class="mb-4">Contact Number</h3>
+            <p><a href="tel://1234567920">+6287762756779</a></p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          <div class="align-self-stretch box p-4 text-center">
+            <div class="icon d-flex align-items-center justify-content-center">
+              <span class="icon-paper-plane"></span>
+            </div>
+            <h3 class="mb-4">Email Address</h3>
+            <p><a href="novanarifki02@gmail.com">novanarifki02@gmail.com</a></p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          <div class="align-self-stretch box p-4 text-center">
+            <div class="icon d-flex align-items-center justify-content-center">
+            
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row no-gutters block-9">
+        <div class="col-md-6 order-md-last d-flex">
+          <form name="contact-wedding-dani">
+      <div class="alert alert-success alert-dismissible fade show d-none my-alert" role="alert">
+        <strong>Terimakasih!</strong> Pesan anda sudah kami terima.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+            <div class="mb-3">
+              <input type="text" placeholder="nama" class="form-control" id="name" aria-describedby="name" name="nama" />
+            </div>
+            <div class="mb-3">
+              <input type="email" placeholder="email" class="form-control" id="email" aria-describedby="email" name="email"/>
+            </div>
+            <div class="mb-3">
+              <textarea placeholder="pesan" class="form-control" id="pesan" rows="3" name="pesan"></textarea>
+            </div>
+            <div class="mb-3">
+              <input type="submit" value="Send Message" class="btn btn-primary btn-kirim py-3 px-5">
+
+      <button class="btn btn-primary btn-loading d-none" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        <span role="status">Loading...</span>
+        </button>
+            </div>
+          </form>
+        
+        </div>
+
+        <div class="col-md-6 d-flex">
+          <div class="img" style="background-image: url(images/img2.jpeg);"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+    <footer>
     <div class="container">
       <div class="row">
         <div class="col text-center">
@@ -413,6 +493,29 @@
 
     document.querySelector('#nama').value = nama;
   </script>
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzFpLQnhMPu8JDnTQmT3KvHUjQaggCdIXeI3GCQmaO17fiic6ksvCwsLPr_42SkIBm9SA/exec'
+    const form = document.forms['contact-wedding-dani']
+    const btnKirim = document.querySelector('.btn-kirim')
+    const btnLoading = document.querySelector('.btn-loading')
+    const myAlert = document.querySelector('.my-alert')
+    
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      btnLoading.classList.toggle('d-none')
+      btnKirim.classList.toggle('d-none')
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        btnLoading.classList.toggle('d-none')
+          btnKirim.classList.toggle('d-none')
+        myAlert.classList.toggle('d-none')
+        form.reset()
+        console.log('Success!', response)
+      })
+      .catch(error => console.error('Error!', error.message))
+    })
+    </script>
+
 </body>
 
 </html>
